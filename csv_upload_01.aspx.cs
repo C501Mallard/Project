@@ -10,11 +10,12 @@ using System.Web.UI.WebControls;
 using System.Web.Configuration;
 using System.Data.OleDb;
 using System.IO;
+using System.Text.RegularExpressions;
 
 public partial class csv_upload_01 : System.Web.UI.Page
 {
     DataTable sdt = new DataTable();
-    string csvPath, csvFolder, csvFile, csvFilename;
+    string csvPath, csvPathT, csvFileT, csvFolder, csvFile, csvFilename;
     DataTable dt = new DataTable();
     string connString, connString1;
     int key = 0;
@@ -30,7 +31,11 @@ public partial class csv_upload_01 : System.Web.UI.Page
         csvPath = csvFolder + csvFile;
         csvFilename = csvFolder + "FA61.csv";
         //csvPath = Server.MapPath("~/Files/") + Path.GetFileName(FileUpload1.PostedFile.FileName);
-        File.Delete(csvFilename);
+        if (File.Exists(csvFilename))
+        {
+            File.Delete(csvFilename);
+        }
+
         FileUpload1.SaveAs(csvPath);
         File.Move(csvPath, csvFilename);
 
@@ -45,9 +50,9 @@ public partial class csv_upload_01 : System.Web.UI.Page
                 da.Fill(dt);
                 GridView1.DataSource = dt;
                 GridView1.DataBind();
-                
+
                 sdt = dt;
-                
+
 
                 dt.Dispose();
                 da.Dispose();
