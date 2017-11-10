@@ -16,7 +16,7 @@
 
 
             <asp:Button ID="Button1" runat="server" Text="顯示資料" OnClick="Button1_Click" />
-            <asp:Button ID="Button2" runat="server" Text="匯入SQL Server" OnClick="Button2_Click" />
+            <%--<asp:Button ID="Button2" runat="server" Text="匯入SQL Server" OnClick="Button2_Click" />--%>
 
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:FA_ODBCConnectionString %>" ProviderName="<%$ ConnectionStrings:FA_ODBCConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [FA61]"></asp:SqlDataSource>
